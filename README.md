@@ -4,7 +4,7 @@ Demo news service is developed by derektruong
 ### Preview
 
 #### Search by parsing query
-![alt text](./statics/screenshot/headline.png?raw=true "Optional Title")
+![alt text](./statics/screenshot/search.png?raw=true "Optional Title")
 
 #### Top headlines page
 ![alt text](https://github.com/derektruong/news-service-gingonic/blob/master/statics/screenshot/headline.png?raw=true)
