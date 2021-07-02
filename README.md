@@ -23,4 +23,4 @@ Demo news service is developed by derektruong
 
 ### References:
   <strong>> https://github.com/gin-gonic/gin</strong>
-
+  <strong>> https://newsapi.org/docs</strong>
