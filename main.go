@@ -1,15 +1,17 @@
 package main
 
 import (
-	"net/http"
 	"log"
+	"net/http"
 	"os"
 	"time"
 
+	"github.com/derektruong/news-app-gin/controllers/news"
+	"github.com/derektruong/news-app-gin/controllers/account"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
-	"github.com/derektruong/news-app-gin/news"
 )
+
 
 
 func main() {
@@ -37,6 +39,10 @@ func main() {
 	router.NoRoute(func(c *gin.Context) {
 		c.HTML(http.StatusNotFound, "general/notfound.html", nil)
 	})
+
+	// account
+	router.GET("/account", account.SignUpHandler)
+	router.POST("/account", account.SignUpHandler)
 
 	router.GET("/", news.HeadLinesHandler(newsapi))
 	router.GET("/search", news.SearchHandler(newsapi))
