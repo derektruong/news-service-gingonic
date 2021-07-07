@@ -7,15 +7,16 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Login</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<link rel="stylesheet" href="../statics/css/account/signIn.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="../statics/css/account/sign_in_up.css">
 </head>
 
 <body>
 	<h2>Sign in/up Form</h2>
 	<div class="container" id="container">
+		<!-- two forms sign in and sign up -->
 		<div class="form-container sign-up-container">
-			<form action="/account" method="POST">
+			<div class="form" method="POST">
 				<h1>Create Account</h1>
 				<div class="social-container">
 					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -23,18 +24,22 @@
 					<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
 				</div>
 				<span>or use your email for registration</span>
-				<input type="text" placeholder="Name" name="name" value="{{ .Name }}" required />
+				<input type="text" placeholder="Name" name="name" required />
 
-				<input id="emailSignUp" onchange="help()" type="email" placeholder="Email" name="email" value="{{ .Email }}" required />
-				<div id="emailError"></div>
+				<input id="emailSignUp" onchange="helpEmailSignUp()" type="email" placeholder="Email" name="email" required />
+				<div id="emailExist" class="text-left fs-6"></div>
 
-				<input type="password" placeholder="Password" name="password" value="{{ .Password }}"
+				<input type="password" placeholder="Password" name="password"
 					required />
-				<button type="submit">Sign Up</button>
-			</form>
+
+				<a href="/signup">
+					<button id="btnSignUpSubmit">Sign Up</button>
+				</a>
+			</div>
 		</div>
+		
 		<div class="form-container sign-in-container">
-			<form>
+			<div class="form" id="sign-in-form">
 				<h1>Sign in</h1>
 				<div class="social-container">
 					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -42,35 +47,47 @@
 					<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
 				</div>
 				<span>or use your account</span>
-				<input type="email" placeholder="Email" />
-				<input type="password" placeholder="Password" />
+
+				<input id="emailSignIn"  type="email" placeholder="Email" value="{{ .Email }}" required onchange="formSignInSubmit()"/>
+				<div id="notExistEmail" class="text-sm-left"></div>
+
+				<input id="passwordSignIn" type="password" placeholder="Password" value="{{ .Password }}" required onchange="formSignInSubmit()"/>
+				<div id="wrongPass" class="text-sm-left"></div>
+
 				<a href="#">Forgot your password?</a>
-				<button>Sign In</button>
-			</form>
+				<button id="btnSignInSubmit">Sign In</button>
+			</div>
 		</div>
+		<!-- end -->
+		<!-- overlay container -->
 		<div class="overlay-container">
 			<div class="overlay">
 				<div class="overlay-panel overlay-left">
 					<h1>Welcome Back!</h1>
 					<p>To keep connected with us please login with your personal info</p>
-					<button class="ghost" id="signIn">Sign In</button>
+					<a href="/signin"><button class="ghost" id="signIn">Sign In</button></a>
 				</div>
 				<div class="overlay-panel overlay-right">
 					<h1>Hello, Friend!</h1>
 					<p>Enter your personal details and start journey with us</p>
-					<button class="ghost" id="signUp">Sign Up</button>
+					<a href="/signup"></a><button class="ghost" id="signUp">Sign Up</button></a>
 				</div>
 			</div>
 		</div>
+
 	</div>
 	<!-- <script type="text/javascript" src="../statics/data.json"></script> -->
 	<script rel="javascript" type="text/javascript" src="../statics/js/account/sign_in_up.js"></script>
-	{{ if .Show }}
-	<script type="text/javascript">
-		alert("This email is already registered");
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+	{{ if .Show}}
+	<script type="text/javascript">
 		container.classList.add("right-panel-active");
 	</script>
+
 	{{ end }}
 </body>
 

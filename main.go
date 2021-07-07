@@ -41,8 +41,12 @@ func main() {
 	})
 
 	// account
-	router.GET("/account", account.SignUpHandler)
-	router.POST("/account", account.SignUpHandler)
+	// router.GET("/account", account.SignUpHandler)
+	router.GET("/signin", account.SignInHandler)
+	router.POST("/signin", account.SignInHandler)
+	router.GET("/signup", account.SignUpHandler)
+	router.POST("/signup", account.SignUpHandler)
+
 
 	router.GET("/", news.HeadLinesHandler(newsapi))
 	router.GET("/search", news.SearchHandler(newsapi))

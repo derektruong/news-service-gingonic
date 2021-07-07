@@ -4,14 +4,16 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
+	"html"
 	"io/ioutil"
 	"net/http"
+	"strings"
 
 	"golang.org/x/crypto/bcrypt"
 
 	"github.com/derektruong/news-app-gin/database"
 	"github.com/gin-gonic/gin"
-	// "github.com/gopherjs/gopherjs/js"
+	jwt "github.com/derektruong/news-app-gin/auth"
 )
 
 func HashPassword(password string) (string, error) {
@@ -24,17 +26,16 @@ func CheckPasswordHash(password, hash string) bool {
 	return err == nil
 }
 
-func AccountFormHandler(c *gin.Context) {
-	c.HTML(http.StatusOK, "account/sign_in_up.html", nil)
+func TripData(data string) string {
+	data = html.EscapeString(strings.TrimSpace(data))
+	return data
 }
+
 
 func LoadEmailToFile(db *sql.DB) {
 	type Email struct {
 		Email string    `json:"email"`
 	}
-	// type Data struct {
-	// 	Data []Email `json:"data"`
-	// }
 
 	data := make([]Email, 0)
 	rows, err := db.Query("SELECT a.email FROM NEWS_APP.account a;")
@@ -42,8 +43,6 @@ func LoadEmailToFile(db *sql.DB) {
 	if err != nil {
 		return 
 	}
-
-	// var data = Data{ Data: make([]Email, 0)}
 
 	for rows.Next() {
 		var email string
@@ -75,41 +74,83 @@ func SignUpHandler(c *gin.Context) {
 		})
 	}
 
-	name := c.PostForm("name")
-	email := c.PostForm("email")
-	password := c.PostForm("password")
+	name := TripData(c.PostForm("name"))
+	email := TripData(c.PostForm("email"))
+	password := TripData(c.PostForm("password"))
 
 	if email == "" {
 		LoadEmailToFile(db)
-		c.HTML(http.StatusOK, "account/sign_in_up.html", nil)
+		c.HTML(http.StatusOK, "account/sign_in_up.html", gin.H{
+			"Show": true,
+		})
 		return
 	} else {
 		// encrypt password
 		hash, _ := HashPassword(password)
 		fmt.Print(hash)
 
-		_, e := addAccount.Exec(name, email, hash, 3)
+		addAccount.Exec(name, email, hash, 3)
+			
+		c.HTML(http.StatusOK, "account/welcome.html", gin.H{
+			"Name": name,
+		})
+	}
 
-		if e != nil {
-			// c.HTML(http.StatusOK, "account/sign_in_up.html", gin.H{
-			// 	"Name": name,
-			// 	"Email": email,
-			// 	"Password": password,
-			// 	"Show": true,
-			// })
-			// c.JSON(http.StatusOK, gin.H{
-			// 	"message": "Error exist email",
-			// })
-			
-		} else if e == nil {
-			
-			c.HTML(http.StatusOK, "account/welcome.html", gin.H{
-				"Name": name,
-			})
-		}
+}
+
+
+
+func SignInHandler(c *gin.Context) {
+	db := database.DBConnect()
+	defer db.Close()
+
+	email := TripData(c.PostForm("email"))
+	password := TripData(c.PostForm("password"))
+
+	if email == "" {
+		c.HTML(http.StatusOK, "account/sign_in_up.html", nil)
+		return
+	}
+
+	sqlStatement := "SELECT a.name, a.password FROM NEWS_APP.account a WHERE email = '"+ email +"'"
+	
+	var name, pass string
+	row := db.QueryRow(sqlStatement)
+	err := row.Scan(&name, &pass)
+
+	if err != nil {
+		fmt.Print(err.Error())
+		c.JSON(http.StatusOK, gin.H{
+			"message": "Email wrong",
+			"text": "This email is not registered, please sign up",
+		})
+
+		return
+	}
+	
+	if !CheckPasswordHash(password, pass) {
+		c.JSON(http.StatusOK, gin.H{
+			"message": "Pass wrong",
+			"text": "Password is wrong!",
+		})
+		return
+	}
+
+	token, errCreate := jwt.Create(name)
+
+	if errCreate != nil {
+		c.JSON(500, gin.H{
+			"message": "Internal Server Error",
+		})
+		return
 	}
 
 
-	
+	c.JSON(http.StatusOK, gin.H{
+		"EMAIL_ID": email,
+		"TOKEN_JWT_ID": token,
+	})
+
+
 
 }
