@@ -8,12 +8,13 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strings"
+	"time"
 
 	"golang.org/x/crypto/bcrypt"
 
+	jwt "github.com/derektruong/news-app-gin/auth"
 	"github.com/derektruong/news-app-gin/database"
 	"github.com/gin-gonic/gin"
-	jwt "github.com/derektruong/news-app-gin/auth"
 )
 
 func HashPassword(password string) (string, error) {
@@ -87,7 +88,6 @@ func SignUpHandler(c *gin.Context) {
 	} else {
 		// encrypt password
 		hash, _ := HashPassword(password)
-		fmt.Print(hash)
 
 		addAccount.Exec(name, email, hash, 3)
 			
@@ -112,11 +112,12 @@ func SignInHandler(c *gin.Context) {
 		return
 	}
 
-	sqlStatement := "SELECT a.name, a.password FROM NEWS_APP.account a WHERE email = '"+ email +"'"
+	sqlStatement := "SELECT a.id , a.name, a.password FROM NEWS_APP.account a WHERE email = '"+ email +"'"
 	
+	var id int
 	var name, pass string
 	row := db.QueryRow(sqlStatement)
-	err := row.Scan(&name, &pass)
+	err := row.Scan(&id, &name, &pass)
 
 	if err != nil {
 		fmt.Print(err.Error())
@@ -136,7 +137,7 @@ func SignInHandler(c *gin.Context) {
 		return
 	}
 
-	token, errCreate := jwt.Create(name)
+	token, errCreate := jwt.Create(id, name, email)
 
 	if errCreate != nil {
 		c.JSON(500, gin.H{
@@ -145,12 +146,20 @@ func SignInHandler(c *gin.Context) {
 		return
 	}
 
+	expTime := time.Now().AddDate(0, 0, 25)
+
+	cookie := &http.Cookie{
+		Name: "TOKEN_JWT_ID",
+		Value: token,
+		Path: "/",
+		Expires: expTime,
+		HttpOnly: true,
+	}
+
+	http.SetCookie(c.Writer, cookie)
 
 	c.JSON(http.StatusOK, gin.H{
-		"EMAIL_ID": email,
-		"TOKEN_JWT_ID": token,
+		"message": "Set cookie successfully",
 	})
-
-
 
 }

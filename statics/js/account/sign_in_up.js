@@ -106,14 +106,10 @@ btnSignInSubmit.addEventListener("click", () => {
 		.then(function (data) {
 			console.log(data);
 			(function() {
-				let uemail = getCookie("EMAIL_ID");
-				if(uemail == "") {
-					setCookie("EMAIL_ID", data.EMAIL_ID, 25);
-					setCookie("TOKEN_JWT_ID", data.TOKEN_JWT_ID, 25);
+				if(data.message === "Set cookie successfully") {
+					window.location.href = "/";
 				}
-				console.log(getCookie("EMAIL_ID"));
 				
-				window.location.href = "/";
 			})();
 		})
 		.catch(function (err) {

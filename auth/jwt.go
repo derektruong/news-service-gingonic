@@ -7,11 +7,15 @@ import (
 	jwt "github.com/dgrijalva/jwt-go"
 )
 
-func Create(username string) (string, error) {
+func Create(id int, name, email string) (string, error) {
 	claims := jwt.MapClaims{}
 	claims["authorized"] = true
-	claims["username"] = username
+	claims["uid"] = id
+	claims["name"] = name
+	claims["email"] = email
 	claims["exp"] = time.Now().Add(time.Hour * 720).Unix()
+
+	
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 
