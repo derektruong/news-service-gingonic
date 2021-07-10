@@ -6,6 +6,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/derektruong/news-app-gin/controllers/landing"
 	"github.com/derektruong/news-app-gin/controllers/news"
 	"github.com/derektruong/news-app-gin/controllers/account"
 	"github.com/derektruong/news-app-gin/auth"
@@ -58,7 +59,7 @@ func main() {
 	// end account sign in/ up
 
 
-	router.GET("/", news.HeadLinesHandler(newsapi))
+	router.GET("/", landing.LandingHandler)
 	router.GET("/search", news.SearchHandler(newsapi))
 	router.GET("/headlines", news.HeadLinesHandler(newsapi))
 	router.GET("/stocks", news.StocksHandler(newsapi))

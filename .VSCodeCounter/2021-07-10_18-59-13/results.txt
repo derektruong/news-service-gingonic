@@ -1,0 +1,85 @@
+Date : 2021-07-10 18:59:13
+Directory : f:\Projects\news-app-gin
+Total : 35 files,  1932 codes, 170 comments, 410 blanks, all 2512 lines
+
+Languages
++-------------+------------+------------+------------+------------+------------+
+| language    | files      | code       | comment    | blank      | total      |
++-------------+------------+------------+------------+------------+------------+
+| Go          |         13 |        691 |         11 |        222 |        924 |
+| Django HTML |          6 |        467 |          0 |         57 |        524 |
+| CSS         |          8 |        434 |        105 |         73 |        612 |
+| JavaScript  |          3 |        291 |         54 |         47 |        392 |
+| Markdown    |          1 |         20 |          0 |          7 |         27 |
+| XML         |          1 |         19 |          0 |          3 |         22 |
+| JSON        |          2 |          8 |          0 |          1 |          9 |
+| Django txt  |          1 |          2 |          0 |          0 |          2 |
++-------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                          | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                             |         35 |      1,932 |        170 |        410 |      2,512 |
+| auth                                                          |          2 |         94 |          0 |         25 |        119 |
+| controllers                                                   |          9 |        519 |          8 |        167 |        694 |
+| controllers\account                                           |          1 |        124 |          1 |         41 |        166 |
+| controllers\news                                              |          7 |        395 |          7 |        125 |        527 |
+| database                                                      |          1 |         16 |          0 |          6 |         22 |
+| models                                                        |          1 |         15 |          0 |          3 |         18 |
+| statics                                                       |         12 |        733 |        159 |        120 |      1,012 |
+| statics\css                                                   |          8 |        434 |        105 |         73 |        612 |
+| statics\css\account                                           |          2 |        279 |          0 |         42 |        321 |
+| statics\css\mdb                                               |          4 |         16 |         99 |          0 |        115 |
+| statics\js                                                    |          3 |        291 |         54 |         47 |        392 |
+| statics\js\account                                            |          1 |         98 |         34 |         25 |        157 |
+| statics\js\general                                            |          1 |        192 |          1 |         22 |        215 |
+| statics\js\mdb                                                |          1 |          1 |         19 |          0 |         20 |
+| templates                                                     |          5 |        322 |          0 |         40 |        362 |
+| templates\account                                             |          2 |        101 |          0 |         17 |        118 |
+| templates\general                                             |          2 |        129 |          0 |         15 |        144 |
+| templates\news                                                |          1 |         92 |          0 |          8 |        100 |
+| testing                                                       |          1 |        145 |          0 |         17 |        162 |
++---------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------+-------------+------------+------------+------------+------------+
+| filename                                                      | language    | code       | comment    | blank      | total      |
++---------------------------------------------------------------+-------------+------------+------------+------------+------------+
+| f:\Projects\news-app-gin\README.md                            | Markdown    |         20 |          0 |          7 |         27 |
+| f:\Projects\news-app-gin\auth\authUser.go                     | Go          |         42 |          0 |          9 |         51 |
+| f:\Projects\news-app-gin\auth\jwt.go                          | Go          |         52 |          0 |         16 |         68 |
+| f:\Projects\news-app-gin\controllers\account\sign_up.go       | Go          |        124 |          1 |         41 |        166 |
+| f:\Projects\news-app-gin\controllers\data.json                | JSON        |          0 |          0 |          1 |          1 |
+| f:\Projects\news-app-gin\controllers\news\general.go          | Go          |         59 |          0 |         13 |         72 |
+| f:\Projects\news-app-gin\controllers\news\headlines.go        | Go          |         55 |          1 |         20 |         76 |
+| f:\Projects\news-app-gin\controllers\news\science.go          | Go          |         56 |          1 |         18 |         75 |
+| f:\Projects\news-app-gin\controllers\news\search.go           | Go          |         57 |          2 |         19 |         78 |
+| f:\Projects\news-app-gin\controllers\news\sport.go            | Go          |         56 |          1 |         18 |         75 |
+| f:\Projects\news-app-gin\controllers\news\stocks.go           | Go          |         56 |          1 |         19 |         76 |
+| f:\Projects\news-app-gin\controllers\news\technologies.go     | Go          |         56 |          1 |         18 |         75 |
+| f:\Projects\news-app-gin\database\connect.go                  | Go          |         16 |          0 |          6 |         22 |
+| f:\Projects\news-app-gin\go.mod                               | XML         |         19 |          0 |          3 |         22 |
+| f:\Projects\news-app-gin\main.go                              | Go          |         47 |          3 |         22 |         72 |
+| f:\Projects\news-app-gin\models\account.go                    | Go          |         15 |          0 |          3 |         18 |
+| f:\Projects\news-app-gin\security.txt                         | Django txt  |          2 |          0 |          0 |          2 |
+| f:\Projects\news-app-gin\statics\css\account\sign_in_up.css   | CSS         |        215 |          0 |         37 |        252 |
+| f:\Projects\news-app-gin\statics\css\account\welcome.css      | CSS         |         64 |          0 |          5 |         69 |
+| f:\Projects\news-app-gin\statics\css\mdb\mdb.dark.min.css     | CSS         |          5 |         26 |          0 |         31 |
+| f:\Projects\news-app-gin\statics\css\mdb\mdb.dark.rtl.min.css | CSS         |          3 |         15 |          0 |         18 |
+| f:\Projects\news-app-gin\statics\css\mdb\mdb.min.css          | CSS         |          5 |         43 |          0 |         48 |
+| f:\Projects\news-app-gin\statics\css\mdb\mdb.rtl.min.css      | CSS         |          3 |         15 |          0 |         18 |
+| f:\Projects\news-app-gin\statics\css\notfound.css             | CSS         |         32 |          3 |          7 |         42 |
+| f:\Projects\news-app-gin\statics\css\style.css                | CSS         |        107 |          3 |         24 |        134 |
+| f:\Projects\news-app-gin\statics\data.json                    | JSON        |          8 |          0 |          0 |          8 |
+| f:\Projects\news-app-gin\statics\js\account\sign_in_up.js     | JavaScript  |         98 |         34 |         25 |        157 |
+| f:\Projects\news-app-gin\statics\js\general\navbar.js         | JavaScript  |        192 |          1 |         22 |        215 |
+| f:\Projects\news-app-gin\statics\js\mdb\mdb.min.js            | JavaScript  |          1 |         19 |          0 |         20 |
+| f:\Projects\news-app-gin\templates\account\sign_in_up.html    | Django HTML |         81 |          0 |         14 |         95 |
+| f:\Projects\news-app-gin\templates\account\welcome.html       | Django HTML |         20 |          0 |          3 |         23 |
+| f:\Projects\news-app-gin\templates\general\index.html         | Django HTML |         94 |          0 |          7 |        101 |
+| f:\Projects\news-app-gin\templates\general\notfound.html      | Django HTML |         35 |          0 |          8 |         43 |
+| f:\Projects\news-app-gin\templates\news\category.html         | Django HTML |         92 |          0 |          8 |        100 |
+| f:\Projects\news-app-gin\testing\test_avatar.html             | Django HTML |        145 |          0 |         17 |        162 |
+| Total                                                         |             |      1,932 |        170 |        410 |      2,512 |
++---------------------------------------------------------------+-------------+------------+------------+------------+------------+

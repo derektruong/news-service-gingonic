@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+{{ define "news/news_search.html" }}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Cypher News power by derektruong</title>
+    <!-- MDB icon -->
+    <link
+      rel="icon"
+      href="../statics/image/mdb-favicon.ico"
+      type="image/x-icon"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <!-- MDB -->
+    <link rel="stylesheet" href="../statics/css/mdb/mdb.min.css" />
+    <link rel="stylesheet" href="../statics/css/style.css" />
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <!-- Start your project here-->
+    <div id="navigation"></div>
+
+    <section class="section">
+      <div class="result-count">
+        {{ if .Results}} {{ if (gt .Results.TotalResults 0) }}
+        <p>
+          About <strong>{{ .Results.TotalResults }}</strong> results were found
+          with your key <strong>{{ .Query }}</strong>
+        </p>
+        {{ else if and (ne .Query "") (eq .Results.TotalResults 0)}}
+        <p>No results found for your query: <strong>{{ .Query }}</strong></p>
+        {{ end }} {{ end }}
+      </div>
+      <ul class="search-results">
+        {{ range.Results.Articles }}
+        <li class="news-article">
+          <div class="article-title">
+            <a target="_blank" rel="noopener noreferrer" href="{{ .URL }}">
+              <h3 class="title text-dark">{{ .Title }}</h3>
+            </a>
+            <p class="description">{{ .Description }}</p>
+            <div class="metadata">
+              <p class="source">{{ .Source.Name }}</p>
+              <time class="published-date">{{ .FormatPublishedDate }}</time>
+            </div>
+          </div>
+          <div class="article-image">
+            <img class="article-image" src="{{ .URLToImage }}" alt="N/A" />
+          </div>
+          {{ end }}
+        </li>
+      </ul>
+
+      <div class="pagination">
+        <div id="previous-page">
+          {{ if (ne .CurrentPage .IsFirstPage) }}
+          <a href="/search?q={{ .Query }}&page={{ .IsFirstPage }}">
+            Previous
+          </a>
+          {{ end }}
+        </div>
+        <div class="current-page">
+          <a> {{ .CurrentPage }} </a>
+        </div>
+
+        <div id="next-page">
+          <!-- {{ if . }} -->
+          {{ if (ne .CurrentPage .IsLastPage ) }}
+          <a href="/search?q={{ .Query }}&page={{ .IsLastPage }}"> Next </a>
+          {{ end }}
+          <!-- {{ end }} -->
+        </div>
+      </div>
+    </section>
+
+    <!-- End your project here-->
+
+    <!-- MDB -->
+    <script type="text/javascript" src="../statics/js/mdb/mdb.min.js"></script>
+    <!-- Custom scripts -->
+    <script
+      type="text/javascript"
+      src="../statics/js/general/navbar.js"
+    ></script>
+  </body>
+</html>
+{{ end }}

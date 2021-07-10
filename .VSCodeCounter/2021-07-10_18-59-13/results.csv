@@ -1,0 +1,37 @@
+"filename", "language", "Go", "Markdown", "Django txt", "XML", "JSON", "Django HTML", "CSS", "JavaScript", "comment", "blank", "total"
+"f:\Projects\news-app-gin\README.md", "Markdown", 0, 20, 0, 0, 0, 0, 0, 0, 0, 7, 27
+"f:\Projects\news-app-gin\auth\authUser.go", "Go", 42, 0, 0, 0, 0, 0, 0, 0, 0, 9, 51
+"f:\Projects\news-app-gin\auth\jwt.go", "Go", 52, 0, 0, 0, 0, 0, 0, 0, 0, 16, 68
+"f:\Projects\news-app-gin\controllers\account\sign_up.go", "Go", 124, 0, 0, 0, 0, 0, 0, 0, 1, 41, 166
+"f:\Projects\news-app-gin\controllers\data.json", "JSON", 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"f:\Projects\news-app-gin\controllers\news\general.go", "Go", 59, 0, 0, 0, 0, 0, 0, 0, 0, 13, 72
+"f:\Projects\news-app-gin\controllers\news\headlines.go", "Go", 55, 0, 0, 0, 0, 0, 0, 0, 1, 20, 76
+"f:\Projects\news-app-gin\controllers\news\science.go", "Go", 56, 0, 0, 0, 0, 0, 0, 0, 1, 18, 75
+"f:\Projects\news-app-gin\controllers\news\search.go", "Go", 57, 0, 0, 0, 0, 0, 0, 0, 2, 19, 78
+"f:\Projects\news-app-gin\controllers\news\sport.go", "Go", 56, 0, 0, 0, 0, 0, 0, 0, 1, 18, 75
+"f:\Projects\news-app-gin\controllers\news\stocks.go", "Go", 56, 0, 0, 0, 0, 0, 0, 0, 1, 19, 76
+"f:\Projects\news-app-gin\controllers\news\technologies.go", "Go", 56, 0, 0, 0, 0, 0, 0, 0, 1, 18, 75
+"f:\Projects\news-app-gin\database\connect.go", "Go", 16, 0, 0, 0, 0, 0, 0, 0, 0, 6, 22
+"f:\Projects\news-app-gin\go.mod", "XML", 0, 0, 0, 19, 0, 0, 0, 0, 0, 3, 22
+"f:\Projects\news-app-gin\main.go", "Go", 47, 0, 0, 0, 0, 0, 0, 0, 3, 22, 72
+"f:\Projects\news-app-gin\models\account.go", "Go", 15, 0, 0, 0, 0, 0, 0, 0, 0, 3, 18
+"f:\Projects\news-app-gin\security.txt", "Django txt", 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2
+"f:\Projects\news-app-gin\statics\css\account\sign_in_up.css", "CSS", 0, 0, 0, 0, 0, 0, 215, 0, 0, 37, 252
+"f:\Projects\news-app-gin\statics\css\account\welcome.css", "CSS", 0, 0, 0, 0, 0, 0, 64, 0, 0, 5, 69
+"f:\Projects\news-app-gin\statics\css\mdb\mdb.dark.min.css", "CSS", 0, 0, 0, 0, 0, 0, 5, 0, 26, 0, 31
+"f:\Projects\news-app-gin\statics\css\mdb\mdb.dark.rtl.min.css", "CSS", 0, 0, 0, 0, 0, 0, 3, 0, 15, 0, 18
+"f:\Projects\news-app-gin\statics\css\mdb\mdb.min.css", "CSS", 0, 0, 0, 0, 0, 0, 5, 0, 43, 0, 48
+"f:\Projects\news-app-gin\statics\css\mdb\mdb.rtl.min.css", "CSS", 0, 0, 0, 0, 0, 0, 3, 0, 15, 0, 18
+"f:\Projects\news-app-gin\statics\css\notfound.css", "CSS", 0, 0, 0, 0, 0, 0, 32, 0, 3, 7, 42
+"f:\Projects\news-app-gin\statics\css\style.css", "CSS", 0, 0, 0, 0, 0, 0, 107, 0, 3, 24, 134
+"f:\Projects\news-app-gin\statics\data.json", "JSON", 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 8
+"f:\Projects\news-app-gin\statics\js\account\sign_in_up.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 98, 34, 25, 157
+"f:\Projects\news-app-gin\statics\js\general\navbar.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 192, 1, 22, 215
+"f:\Projects\news-app-gin\statics\js\mdb\mdb.min.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 1, 19, 0, 20
+"f:\Projects\news-app-gin\templates\account\sign_in_up.html", "Django HTML", 0, 0, 0, 0, 0, 81, 0, 0, 0, 14, 95
+"f:\Projects\news-app-gin\templates\account\welcome.html", "Django HTML", 0, 0, 0, 0, 0, 20, 0, 0, 0, 3, 23
+"f:\Projects\news-app-gin\templates\general\index.html", "Django HTML", 0, 0, 0, 0, 0, 94, 0, 0, 0, 7, 101
+"f:\Projects\news-app-gin\templates\general\notfound.html", "Django HTML", 0, 0, 0, 0, 0, 35, 0, 0, 0, 8, 43
+"f:\Projects\news-app-gin\templates\news\category.html", "Django HTML", 0, 0, 0, 0, 0, 92, 0, 0, 0, 8, 100
+"f:\Projects\news-app-gin\testing\test_avatar.html", "Django HTML", 0, 0, 0, 0, 0, 145, 0, 0, 0, 17, 162
+"Total", "-", 691, 20, 2, 19, 8, 467, 434, 291, 170, 410, 2512
