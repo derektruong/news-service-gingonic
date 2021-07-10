@@ -1,8 +1,8 @@
-[
- {
-  "email": "minhduc0589@gmail.com"
- },
- {
-  "email": "pnga70@gmail.com"
- }
-]
+{
+    "_id": {
+        "$oid": "60e74c54b5bb76a00b362d3c",
+		"username": "derek",
+		"email": "minhduc0589@gmail.com",
+		"password": "1"
+    }
+}

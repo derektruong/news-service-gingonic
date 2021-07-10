@@ -8,6 +8,8 @@ import (
 
 	"github.com/derektruong/news-app-gin/controllers/news"
 	"github.com/derektruong/news-app-gin/controllers/account"
+	"github.com/derektruong/news-app-gin/auth"
+
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
@@ -40,12 +42,20 @@ func main() {
 		c.HTML(http.StatusNotFound, "general/notfound.html", nil)
 	})
 
-	// account
-	// router.GET("/account", account.SignUpHandler)
+	// Handler for API calls
+	rAPI := router.Group("/api")
+	{
+		rAPI.GET("/authuser", auth.AuthSignInHandler)
+		rAPI.GET("/authlogout", auth.AuthLogoutHandler)
+	}
+	
+	// account sign in/ up
 	router.GET("/signin", account.SignInHandler)
 	router.POST("/signin", account.SignInHandler)
 	router.GET("/signup", account.SignUpHandler)
 	router.POST("/signup", account.SignUpHandler)
+
+	// end account sign in/ up
 
 
 	router.GET("/", news.HeadLinesHandler(newsapi))
