@@ -39,7 +39,8 @@ type Search struct {
 	Query      string
 	CurrentPage   int
 	TotalPages int
-	Results    *Result
+	Results *Result
+	RowResults    [][]Article
 }
 
 func NewClient(httpClient *http.Client, key string, pageSize int) *Client{

@@ -37,7 +37,7 @@ func main() {
 	router.LoadHTMLGlob("templates/**/*")
 
 	myClient := &http.Client{Timeout: 10 * time.Second}
-	newsapi := news.NewClient(myClient, apiKey, 10)
+	
 
 	router.NoRoute(func(c *gin.Context) {
 		c.HTML(http.StatusNotFound, "general/notfound.html", nil)
@@ -53,13 +53,17 @@ func main() {
 	// account sign in/ up
 	router.GET("/signin", account.SignInHandler)
 	router.POST("/signin", account.SignInHandler)
+
 	router.GET("/signup", account.SignUpHandler)
 	router.POST("/signup", account.SignUpHandler)
-
 	// end account sign in/ up
 
+	// Handler for landing Page use API
+	router.GET("/", landing.QuotesHandler(myClient))
 
-	router.GET("/", landing.LandingHandler)
+	// Handler for News Pages use API
+	newsapi := news.NewClient(myClient, apiKey, 12)
+
 	router.GET("/search", news.SearchHandler(newsapi))
 	router.GET("/headlines", news.HeadLinesHandler(newsapi))
 	router.GET("/stocks", news.StocksHandler(newsapi))

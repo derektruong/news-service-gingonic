@@ -63,6 +63,19 @@ func SearchHandler(cl *Client) gin.HandlerFunc {
 			return
 		}
 
+		resArray := make([][]Article, 0)
+
+		crr := 0
+
+		for {
+			mini := int(math.Min(float64(len(results.Articles)), float64(crr + 3)))
+			resArray = append(resArray, results.Articles[crr: mini])
+			if mini == len(results.Articles) {
+				break
+			}
+			crr += 3
+		}
+
 		search := &Search{
 			Type: "",
 			Path: "",
@@ -70,9 +83,10 @@ func SearchHandler(cl *Client) gin.HandlerFunc {
 			CurrentPage: currentPage,
 			TotalPages: int(math.Ceil(float64(results.TotalResults) / float64(cl.PageSize))),
 			Results: results,
+			RowResults: resArray,
 		}
 
-		c.HTML(http.StatusOK, "news/news_search.html", search)
+		c.HTML(http.StatusOK, "news/beta_search.html", search)
 	}
 	
 }

@@ -92,30 +92,33 @@ function formSignInSubmit() {
 
 
 btnSignInSubmit.addEventListener("click", () => {
-	const formData = new FormData();
+    const formData = new FormData();
 
-	formData.append('email', document.getElementById("emailSignIn").value);
-	formData.append('password', document.getElementById("passwordSignIn").value);
+    formData.append("email", document.getElementById("emailSignIn").value);
+    formData.append(
+        "password",
+        document.getElementById("passwordSignIn").value
+    );
 
-	fetch('/signin', {
-		method: 'POST', 
-		body: formData,
-	  }).then(function (response) {
-			return response.json();
-		})
-		.then(function (data) {
-			console.log(data);
-			(function() {
-				if(data.message === "Set cookie successfully") {
-					window.location.href = "/";
-				}
-				
-			})();
-		})
-		.catch(function (err) {
-			console.log('error: ' + err);
-		});
-})
+    fetch("/signin", {
+        method: "POST",
+        body: formData,
+    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+            (function () {
+                if (data.message === "Set cookie successfully") {
+                    window.location.href = "/";
+                }
+            })();
+        })
+        .catch(function (err) {
+            console.log("error: " + err);
+        });
+});
 
 // Handle cookies and session
 

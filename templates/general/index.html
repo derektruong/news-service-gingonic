@@ -124,7 +124,7 @@
 			<div class="row">
 			  <div class="col-md-6 gx-5 mb-4">
 				<div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
-				  <img src="https://mdbootstrap.com/img/new/slides/031.jpg" class="img-fluid" />
+				  <img src="https://images.pexels.com/photos/904616/pexels-photo-904616.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" class="img-fluid" />
 				  <a href="#!">
 					<div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
 				  </a>
@@ -133,19 +133,13 @@
   
 			  <div class="col-md-6 gx-5 mb-4">
 				<h4><strong>Every day a quote</strong></h4>
-				<p class="text-muted">
-					Try to make at least one person happy every day. If you cannot do a kind deed, 
-					speak a kind word. If you cannot speak a kind word, think a kind thought. 
-					Count up, if you can, the treasure of happiness that you would dispense in a week, 
-					in a year, in a lifetime!
-				</p>
-				<p><strong><i>Lawrence G. Lovasik</i></strong></p>
-				<p class="text-muted">
-					Every day is a new opportunity. You can build on yesterday's success or put its 
-					failures behind and start over again. That's the way life is, 
-					with a new game every day, and that's the way baseball is.
-				</p>
-				<p><strong><i>Bob Feller</i></strong></p>
+				{{ range.Quo1 }}
+					<p class="text-muted">
+						{{ .Text }}
+					</p>
+					<p><strong><i>{{ .Author }}</i></strong></p>
+
+				{{ end }}
 			  </div>
 			</div>
 		  </section>
@@ -158,11 +152,11 @@
 			<h4 class="mb-5"><strong>From my pleasure!</strong></h4>
   
 			<div class="row">
-			  <div class="col-lg-4 col-md-12 mb-4">
+			  <div class="col-lg-4 col-md-6 mb-4">
 				<div class="card">
 				  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
 					<img
-					  src="https://mdbootstrap.com/img/new/standard/nature/184.jpg"
+					  src="https://images.pexels.com/photos/2776479/pexels-photo-2776479.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
 					  class="img-fluid"
 					/>
 					<a href="#!">
@@ -170,10 +164,9 @@
 					</a>
 				  </div>
 				  <div class="card-body">
-					<h5 class="card-title">Card title</h5>
+					<h5 class="card-title">{{ .AuthorCard1 }}</h5>
 					<p class="card-text">
-					  Some quick example text to build on the card title and make up the bulk of the
-					  card's content.
+						{{ .TextCard1 }}
 					</p>
 				  </div>
 				</div>
@@ -191,10 +184,9 @@
 					</a>
 				  </div>
 				  <div class="card-body">
-					<h5 class="card-title">Card title</h5>
+					<h5 class="card-title">{{ .AuthorCard2 }}</h5>
 					<p class="card-text">
-					  Some quick example text to build on the card title and make up the bulk of the
-					  card's content.
+						{{ .TextCard2 }}
 					</p>
 				  </div>
 				</div>
@@ -204,7 +196,7 @@
 				<div class="card">
 				  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
 					<img
-					  src="https://mdbootstrap.com/img/new/standard/nature/111.jpg"
+					  src="https://images.pexels.com/photos/668353/pexels-photo-668353.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
 					  class="img-fluid"
 					/>
 					<a href="#!">
@@ -212,10 +204,9 @@
 					</a>
 				  </div>
 				  <div class="card-body">
-					<h5 class="card-title">Card title</h5>
+					<h5 class="card-title">{{ .AuthorCard3 }}</h5>
 					<p class="card-text">
-					  Some quick example text to build on the card title and make up the bulk of the
-					  card's content.
+						{{ .TextCard3 }}
 					</p>
 				  </div>
 				</div>
