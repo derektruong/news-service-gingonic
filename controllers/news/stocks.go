@@ -34,7 +34,7 @@ func (c *Client) FetchStocks(page string) (*Result, error) {
 
 	var res Result
 	json.Unmarshal(body, &res)
-	fmt.Println(res)
+	// fmt.Println(res)
 	return &res, json.Unmarshal(body, &res)
 }
 

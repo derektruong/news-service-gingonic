@@ -37,26 +37,6 @@
 			{{ end }} {{ end }}
 		</div>
 
-		<!-- <ul class="search-results">
-        {{ range.Results.Articles }}
-        <li class="news-article">
-          <div class="article-title">
-            <a target="_blank" rel="noopener noreferrer" href="{{ .URL }}">
-              <h3 class="title text-dark">{{ .Title }}</h3>
-            </a>
-            <p class="description">{{ .Description }}</p>
-            <div class="metadata">
-              <p class="source">{{ .Source.Name }}</p>
-              <time class="published-date">{{ .FormatPublishedDate }}</time>
-            </div>
-          </div>
-          <div class="article-image">
-            <img class="article-image" src="{{ .URLToImage }}" alt="N/A" />
-          </div>
-          {{ end }}
-        </li>
-      </ul> -->
-
 
 		<div class="container">
 			{{ range $i1, $v1 := .RowResults }}
@@ -74,7 +54,7 @@
 						<div class="card-body">
 							<h5 class="card-title">{{ $v2.Title }}</h5>
 							<p class="card-text">
-								{{ $v2.Description }}
+								{{ $v2.FormatDescription }}
 							</p>
 							<div class="card-footer text-muted">{{ $v2.Source.Name}} {{ $v2.FormatPublishedDate }}</div>
 						</div>

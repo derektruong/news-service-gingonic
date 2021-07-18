@@ -39,26 +39,41 @@
 			</p>
 			{{ end }} {{ end }}
 		</div>
-		<ul class="search-results">
-			{{ range.Results.Articles }}
-			<li class="news-article">
-				<div class="article-title">
-					<a target="_blank" rel="noopener noreferrer" href="{{ .URL }}">
-						<h3 class="title text-dark">{{ .Title }}</h3>
-					</a>
-					<p class="description">{{ .Description }}</p>
-					<div class="metadata">
-						<p class="source">{{ .Source.Name }}</p>
-						<time class="published-date">{{ .FormatPublishedDate }}</time>
+		<!--  TODO: Up here! -->
+
+		<!-- Change here! -->
+
+		<div class="container">
+			{{ range $i1, $v1 := .RowResults }}
+			<div class="row">
+
+				{{ range $i2, $v2 := $v1 }}
+				<div class="col-md">
+					<div class="card">
+						<div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+							<img src="{{ $v2.URLToImage }}" alt="N/A"class="img-fluid" />
+							<a href="{{ $v2.URL }}" target="_blank">
+								<div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+							</a>
+						</div>
+						<div class="card-body">
+							<h5 class="card-title">{{ $v2.Title }}</h5>
+							<p class="card-text">
+								{{ $v2.FormatDescription }}
+							</p>
+							<div class="card-footer text-muted">{{ $v2.Source.Name}} {{ $v2.FormatPublishedDate }}</div>
+						</div>
 					</div>
 				</div>
-				<div class="article-image">
-					<img class="article-image" src="{{ .URLToImage }}" alt="N/A" />
-				</div>
 				{{ end }}
-			</li>
-		</ul>
 
+			</div>
+			{{ end }}
+
+		</div>
+
+		<!-- //// -->
+		
 		<div class="pagination">
 			<div id="previous-page">
 				{{ if (ne .CurrentPage .IsFirstPage) }}

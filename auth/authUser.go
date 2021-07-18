@@ -1,21 +1,23 @@
 package auth
 
 import (
+	// "encoding/json"
+	// "fmt"
+	// "io/ioutil"
+	// "log"
 	"net/http"
 	"time"
 
 	"github.com/gin-gonic/gin"
 )
 
-func AuthSignInHandler(c *gin.Context) {
-	cookie := c.Request.Cookies()
+type Result struct {
+	Error string `json:"error"`
+}
 
-	var token string
-	for _, val := range cookie {
-		if val.Name == "TOKEN_JWT_ID" {
-			token = val.Value
-		}
-	}
+func AuthSignInHandler(c *gin.Context) {
+	token, _ := c.Cookie("TOKEN_JWT_ID")
+
 	acc, err := VerifyJWT(token)
 
 	if err != nil || token == "" {
@@ -25,7 +27,7 @@ func AuthSignInHandler(c *gin.Context) {
 		})
 	} else {
 		c.JSON(200, gin.H{
-			"message": "authenticate successfully!",
+			"message": "granted!",
 			"uid": acc.ID,
 			"name": acc.Name,
 			"email": acc.Email,
@@ -33,13 +35,27 @@ func AuthSignInHandler(c *gin.Context) {
 	}
 }
 
+func GetFireBaseToken(c *gin.Context) string {
+	token, err := c.Cookie("TOKEN_JWT_ID")
+
+	// fmt.Println(token)
+	if err != nil || token == "" {
+		// c.JSON(200, gin.H{
+		// 	"token":   token,
+		// 	"message": err.Error(),
+		// })
+		return  ""
+	}
+	return token
+}
+
 func AuthLogoutHandler(c *gin.Context) {
 
 	cookie := &http.Cookie{
-		Name: "TOKEN_JWT_ID",
-		Value: "",
-		Path: "/",
-		Expires: time.Now().Add(time.Second),
+		Name:     "TOKEN_JWT_ID",
+		Value:    "",
+		Path:     "/",
+		Expires:  time.Now().Add(time.Second),
 		HttpOnly: true,
 	}
 

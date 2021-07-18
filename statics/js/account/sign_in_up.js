@@ -47,49 +47,50 @@ function helpEmailSignUp() {
 	
 }
 
-function formSignInSubmit() {
-	const formData = new FormData();
+// function formSignInSubmit() {
+// 	const formData = new FormData();
 
-	formData.append('email', document.getElementById("emailSignIn").value);
-	formData.append('password', document.getElementById("passwordSignIn").value);
+// 	formData.append('email', document.getElementById("emailSignIn").value);
+// 	formData.append('password', document.getElementById("passwordSignIn").value);
+// 	formData.append('is_login', 'false');
 	
-	fetch('/signin', {
-		method: 'POST', 
-		body: formData,
-	  }).then(function (response) {
-			return response.json();
-		})
-		.then(function (data) {
-			(function() {
-				if(data.message === "Email wrong") {
-					document.getElementById("notExistEmail").innerHTML 
-							= "<p class='text-warning m-0'>"+ data.text +"</p>";
-					document.getElementById("wrongPass").innerHTML 
-							= "";
-					document.getElementById("btnSignInSubmit").disabled = true;
-				} else if(data.message === "Pass wrong") {
-					document.getElementById("wrongPass").innerHTML 
-							= "<p class='text-warning m-0'>"+ data.text +"</p>";
-					document.getElementById("notExistEmail").innerHTML 
-							= "";
-					document.getElementById("btnSignInSubmit").disabled = true;
+// 	fetch('/signin', {
+// 		method: 'POST', 
+// 		body: formData,
+// 	  }).then(function (response) {
+// 			return response.json();
+// 		})
+// 		.then(function (data) {
+// 			(function() {
+// 				if(data.message === "Email wrong") {
+// 					document.getElementById("notExistEmail").innerHTML 
+// 							= "<p class='text-warning m-0'>"+ data.text +"</p>";
+// 					document.getElementById("wrongPass").innerHTML 
+// 							= "";
+// 					document.getElementById("btnSignInSubmit").disabled = true;
+// 					return
+// 				} else if(data.message === "Pass wrong") {
+// 					document.getElementById("wrongPass").innerHTML 
+// 							= "<p class='text-warning m-0'>"+ data.text +"</p>";
+// 					document.getElementById("notExistEmail").innerHTML 
+// 							= "";
+// 					document.getElementById("btnSignInSubmit").disabled = true;
+// 					return
 
-				} else {
-					document.getElementById("notExistEmail").innerHTML 
-							= "";
-					document.getElementById("wrongPass").innerHTML 
-							= "";
-					document.getElementById("btnSignInSubmit").disabled = false;
+// 				} 
+// 				document.getElementById("notExistEmail").innerHTML 
+// 						= "";
+// 				document.getElementById("wrongPass").innerHTML 
+// 						= "";
+// 				document.getElementById("btnSignInSubmit").disabled = false;
 
-				}
-			})();
-		})
-		.catch(function (err) {
-			console.log('error: ' + err);
-		});
-}
-
-
+				
+// 			})();
+// 		})
+// 		.catch(function (err) {
+// 			console.log('error: ' + err);
+// 		});
+// }
 
 btnSignInSubmit.addEventListener("click", () => {
     const formData = new FormData();
@@ -99,6 +100,7 @@ btnSignInSubmit.addEventListener("click", () => {
         "password",
         document.getElementById("passwordSignIn").value
     );
+	formData.append('is_login', 'true');
 
     fetch("/signin", {
         method: "POST",
@@ -110,7 +112,21 @@ btnSignInSubmit.addEventListener("click", () => {
         .then(function (data) {
             console.log(data);
             (function () {
-                if (data.message === "Set cookie successfully") {
+
+				if(data.message === "Email wrong") {
+					document.getElementById("notExistEmail").innerHTML 
+							= "<p class='text-warning m-0'>"+ data.text +"</p>";
+					document.getElementById("wrongPass").innerHTML 
+							= "";
+					return
+				} else if(data.message === "Pass wrong") {
+					document.getElementById("wrongPass").innerHTML 
+							= "<p class='text-warning m-0'>"+ data.text +"</p>";
+					document.getElementById("notExistEmail").innerHTML 
+							= "";
+					return
+
+				} else if (data.message === "Set cookie successfully") {
                     window.location.href = "/";
                 }
             })();
@@ -119,42 +135,3 @@ btnSignInSubmit.addEventListener("click", () => {
             console.log("error: " + err);
         });
 });
-
-// Handle cookies and session
-
-// function setCookie(cname,cvalue,exdays) {
-// 	const d = new Date();
-// 	d.setTime(d.getTime() + (exdays*24*60*60*1000));
-// 	let expires = "expires=" + d.toGMTString();
-// 	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-//   }
-  
-//   function getCookie(cname) {
-// 	let name = cname + "=";
-// 	let decodedCookie = decodeURIComponent(document.cookie);
-// 	let ca = decodedCookie.split(';');
-// 	for(let i = 0; i < ca.length; i++) {
-// 	  let c = ca[i];
-// 	  while (c.charAt(0) == ' ') {
-// 		c = c.substring(1);
-// 	  }
-// 	  if (c.indexOf(name) == 0) {
-// 		return c.substring(name.length, c.length);
-// 	  }
-// 	}
-// 	return "";
-//   }
-  
-//   function checkCookie() {
-// 	let user = getCookie("username");
-// 	if (user != "") {
-// 	  alert("Welcome again " + user);
-// 	} else {
-// 	   user = prompt("Please enter your name:","");
-// 	   if (user != "" && user != null) {
-// 		 setCookie("username", user, 25);
-// 	   }
-// 	}
-//   }
-
-  //

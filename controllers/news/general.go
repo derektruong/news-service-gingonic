@@ -57,6 +57,15 @@ func (a *Article) FormatPublishedDate() string {
 	return fmt.Sprint(day, month, ", ", year)
 }
 
+func (a *Article) FormatDescription() string {
+	if len(a.Description) > 150 {
+		description := a.Description[0:150]
+
+		return fmt.Sprint(description + "...")
+	}
+	return fmt.Sprint(a.Description)
+}
+
 func (s *Search) IsFirstPage() int {
 	if s.CurrentPage == 1 {
 		return 1

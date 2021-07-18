@@ -30,7 +30,7 @@ window.addEventListener('load', () => {
 		.then(function (data) {
 			// console.log(data);
 			(function () {
-				if (data.message === "authenticate successfully!") {
+				if (data.message === "granted!") {
 					console.log("ok")
 					userArea = `
 					<ul class="navbar-nav">

@@ -49,3 +49,12 @@ func FetchQuotes(c *http.Client) (*Result, error) {
 	json.Unmarshal(body, &res)
 	return &res, json.Unmarshal(body, &res)
 }
+
+func (q *Quote) FormatText() string {
+	if len(q.Text) > 150 {
+		description := q.Text[0:150]
+
+		return fmt.Sprint(description + "...")
+	}
+	return fmt.Sprint(q.Text)
+}

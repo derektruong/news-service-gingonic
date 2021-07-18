@@ -1,12 +1,14 @@
 package account
 
 import (
+	// "context"
 	"database/sql"
 	"encoding/json"
 	"fmt"
 	"html"
 	"io/ioutil"
 	"net/http"
+	// "strconv"
 	"strings"
 	"time"
 
@@ -15,6 +17,8 @@ import (
 	jwt "github.com/derektruong/news-app-gin/auth"
 	"github.com/derektruong/news-app-gin/database"
 	"github.com/gin-gonic/gin"
+
+	// "firebase.google.com/go/auth"
 )
 
 func HashPassword(password string) (string, error) {
@@ -106,6 +110,7 @@ func SignInHandler(c *gin.Context) {
 
 	email := TripData(c.PostForm("email"))
 	password := TripData(c.PostForm("password"))
+	isLogin := TripData(c.PostForm("is_login"))
 
 	if email == "" {
 		c.HTML(http.StatusOK, "account/sign_in_up.html", nil)
@@ -137,29 +142,44 @@ func SignInHandler(c *gin.Context) {
 		return
 	}
 
-	token, errCreate := jwt.Create(id, name, email)
+	
+	if isLogin == "true" {
+		// firebaseAuth := c.MustGet("firebaseAuth").(*auth.Client)
 
-	if errCreate != nil {
-		c.JSON(500, gin.H{
-			"message": "Internal Server Error",
+		// claims := map[string]interface{}{
+		// 	"email": email,
+		// }
+
+		// token, err := firebaseAuth.CustomTokenWithClaims(context.Background(), strconv.Itoa(id), claims)
+		token, err := jwt.Create(id, name, email)
+		if err != nil {
+			c.JSON(500, gin.H{
+				"message": "Internal Server Error",
+			})
+			return
+		}
+
+		// c.JSON(http.StatusOK, gin.H{
+		// 	"token": token,
+		// 	"message": "Set cookie successfully",
+		// })
+
+		expTime := time.Now().AddDate(0, 0, 25)
+
+		cookie := &http.Cookie{
+			Name: "TOKEN_JWT_ID",
+			Value: token,
+			Path: "/",
+			Expires: expTime,
+			HttpOnly: true,
+		}
+
+		http.SetCookie(c.Writer, cookie)
+
+
+
+		c.JSON(http.StatusOK, gin.H{
+			"message": "Set cookie successfully",
 		})
-		return
 	}
-
-	expTime := time.Now().AddDate(0, 0, 25)
-
-	cookie := &http.Cookie{
-		Name: "TOKEN_JWT_ID",
-		Value: token,
-		Path: "/",
-		Expires: expTime,
-		HttpOnly: true,
-	}
-
-	http.SetCookie(c.Writer, cookie)
-
-	c.JSON(http.StatusOK, gin.H{
-		"message": "Set cookie successfully",
-	})
-
 }

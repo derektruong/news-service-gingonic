@@ -80,7 +80,8 @@ body {
 
 .card {
 	width: auto;
-	height: auto;
+	min-height: 450px;
+	max-height: 450px;
 }
 
 

@@ -86,7 +86,7 @@ func SearchHandler(cl *Client) gin.HandlerFunc {
 			RowResults: resArray,
 		}
 
-		c.HTML(http.StatusOK, "news/beta_search.html", search)
+		c.HTML(http.StatusOK, "news/news_search.html", search)
 	}
 	
 }
